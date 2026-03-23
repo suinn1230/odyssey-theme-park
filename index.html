@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Odyssey Theme Park</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#0f172a;
+color:white;
+text-align:center;
+}
+
+header{
+padding:30px;
+background:#020617;
+font-size:28px;
+font-weight:bold;
+}
+
+.section{
+padding:40px 20px;
+}
+
+.zone{
+border:1px solid #334155;
+border-radius:15px;
+margin:20px auto;
+width:80%;
+padding:20px;
+background:#1e293b;
+}
+
+.zone h2{
+color:#38bdf8;
+}
+
+.card{
+background:#0f172a;
+border-radius:10px;
+padding:20px;
+margin:15px 0;
+}
+
+button{
+padding:10px 20px;
+border:none;
+border-radius:8px;
+background:#38bdf8;
+color:black;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+background:#0ea5e9;
+}
+
+#popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.8);
+display:none;
+justify-content:center;
+align-items:center;
+}
+
+#popupContent{
+background:#1e293b;
+padding:30px;
+border-radius:15px;
+width:60%;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+Odyssey Theme Park  
+<br>
+<small style="font-size:16px;">오디세우스의 여정을 따라가는 체험형 테마파크</small>
+</header>
+
+<div class="section">
+
+<div class="zone">
+<h2>🐂 Cyclops Zone</h2>
+
+<div class="card">
+<h3>키클롭스 탈출</h3>
+<p>양 아래에 숨어 거인의 동굴에서 탈출하는 체험</p>
+<button onclick="openPopup('cyclops')">자세히 보기</button>
+</div>
+
+</div>
+
+
+<div class="zone">
+<h2>🌊 Poseidon Zone</h2>
+
+<div class="card">
+<h3>포세이돈의 분노</h3>
+<p>폭풍 속에서 살아남는 협동형 항해 체험</p>
+<button onclick="openPopup('poseidon')">자세히 보기</button>
+</div>
+
+</div>
+
+</div>
+
+<div id="popup">
+<div id="popupContent">
+<h2 id="title"></h2>
+<p id="desc"></p>
+<button onclick="closePopup()">닫기</button>
+</div>
+</div>
+
+<script>
+
+function openPopup(type){
+
+let title="";
+let desc="";
+
+if(type==="cyclops"){
+title="키클롭스 어트랙션";
+desc=`
+폴리페모스의 동굴에서 탈출하는 롤러코스터형 어트랙션입니다.
+방문객은 양의 아래에 매달려 이동하며, 
+키클롭스가 양을 만지는 순간 구조가 반응하여 긴장감을 제공합니다.
+마지막에는 동굴을 탈출하며 속도가 급격히 상승합니다.
+`;
+}
+
+if(type==="poseidon"){
+title="포세이돈의 분노";
+desc=`
+포세이돈의 분노로 발생한 폭풍 속을 항해하는 보트형 어트랙션입니다.
+10명의 탑승객이 5명씩 나뉘어 각각 다른 동굴로 이동하며,
+협동 미션을 수행한 후 다시 합류하여 폭풍을 탈출합니다.
+`;
+}
+
+document.getElementById("title").innerText=title;
+document.getElementById("desc").innerText=desc;
+document.getElementById("popup").style.display="flex";
+}
+
+function closePopup(){
+document.getElementById("popup").style.display="none";
+}
+
+</script>
+
+</body>
+</html>
