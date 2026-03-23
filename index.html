@@ -1,164 +1,418 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Odyssey Theme Park</title>
-
 <style>
-body{
-margin:0;
-font-family:Arial;
-background:#0f172a;
-color:white;
-text-align:center;
-}
+  * { box-sizing: border-box; }
+  body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:#0f172a;
+    color:#fff;
+    line-height:1.6;
+  }
 
-header{
-padding:30px;
-background:#020617;
-font-size:28px;
-font-weight:bold;
-}
+  header{
+    padding:32px 20px;
+    text-align:center;
+    background:linear-gradient(180deg, #020617 0%, #0f172a 100%);
+    border-bottom:1px solid #1e293b;
+  }
+  header h1{
+    margin:0 0 8px;
+    font-size:32px;
+  }
+  header p{
+    margin:0;
+    color:#cbd5e1;
+    font-size:16px;
+  }
 
-.section{
-padding:40px 20px;
-}
+  .container{
+    width:min(1100px, 92%);
+    margin:40px auto 60px;
+  }
 
-.zone{
-border:1px solid #334155;
-border-radius:15px;
-margin:20px auto;
-width:80%;
-padding:20px;
-background:#1e293b;
-}
+  .intro{
+    text-align:center;
+    margin-bottom:32px;
+    color:#cbd5e1;
+  }
 
-.zone h2{
-color:#38bdf8;
-}
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+    gap:24px;
+  }
 
-.card{
-background:#0f172a;
-border-radius:10px;
-padding:20px;
-margin:15px 0;
-}
+  .card{
+    background:#1e293b;
+    border:1px solid #334155;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 12px 30px rgba(0,0,0,0.25);
+  }
 
-button{
-padding:10px 20px;
-border:none;
-border-radius:8px;
-background:#38bdf8;
-color:black;
-font-weight:bold;
-cursor:pointer;
-}
+  .card img{
+    display:block;
+    width:100%;
+    height:260px;
+    object-fit:cover;
+    background:#0b1220;
+  }
 
-button:hover{
-background:#0ea5e9;
-}
+  .card-body{
+    padding:22px;
+  }
 
-#popup{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.8);
-display:none;
-justify-content:center;
-align-items:center;
-}
+  .zone{
+    margin:0 0 10px;
+    font-size:28px;
+    font-weight:700;
+    color:#38bdf8;
+  }
 
-#popupContent{
-background:#1e293b;
-padding:30px;
-border-radius:15px;
-width:60%;
-}
+  .subtitle{
+    margin:0 0 8px;
+    font-size:22px;
+    font-weight:700;
+    color:#fff;
+  }
 
+  .summary{
+    margin:0 0 18px;
+    color:#cbd5e1;
+    min-height:52px;
+  }
+
+  button{
+    padding:12px 22px;
+    border:none;
+    border-radius:10px;
+    background:#38bdf8;
+    color:#0f172a;
+    font-weight:700;
+    cursor:pointer;
+    font-size:15px;
+  }
+  button:hover{
+    background:#0ea5e9;
+  }
+
+  #popup{
+    position:fixed;
+    inset:0;
+    background:rgba(2,6,23,0.82);
+    display:none;
+    justify-content:center;
+    align-items:flex-start;
+    overflow:auto;
+    padding:40px 16px;
+    z-index:999;
+  }
+
+  #popupContent{
+    width:min(980px, 100%);
+    background:#111827;
+    border:1px solid #334155;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 20px 50px rgba(0,0,0,0.45);
+  }
+
+  .popup-hero img{
+    width:100%;
+    height:360px;
+    object-fit:cover;
+    display:block;
+    background:#0b1220;
+  }
+
+  .popup-body{
+    padding:28px 26px 30px;
+  }
+
+  .popup-zone{
+    margin:0 0 6px;
+    font-size:15px;
+    color:#7dd3fc;
+    font-weight:700;
+    letter-spacing:0.3px;
+  }
+
+  .popup-title{
+    margin:0 0 18px;
+    font-size:34px;
+    line-height:1.2;
+  }
+
+  .info-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+    margin-top:20px;
+  }
+
+  .info-box{
+    background:#0f172a;
+    border:1px solid #334155;
+    border-radius:16px;
+    padding:18px;
+  }
+
+  .info-box h3{
+    margin:0 0 10px;
+    font-size:18px;
+    color:#38bdf8;
+  }
+
+  .info-box p,
+  .info-box li{
+    color:#e2e8f0;
+    margin:0;
+  }
+
+  .info-box ul{
+    padding-left:18px;
+    margin:0;
+  }
+
+  .close-wrap{
+    display:flex;
+    justify-content:flex-end;
+    margin-top:24px;
+  }
+
+  .close-btn{
+    background:#e2e8f0;
+    color:#0f172a;
+  }
+
+  @media (max-width: 768px){
+    .popup-hero img{ height:240px; }
+    .popup-title{ font-size:26px; }
+    .info-grid{ grid-template-columns:1fr; }
+    .zone{ font-size:24px; }
+  }
 </style>
-
 </head>
-
 <body>
 
 <header>
-Odyssey Theme Park  
-<br>
-<small style="font-size:16px;">오디세우스의 여정을 따라가는 체험형 테마파크</small>
+  <h1>오디세우스의 여정을 따라가는 체험형 테마파크</h1>
+  <p>키클롭스 존과 포세이돈의 분노 존을 중심으로 구현한 인터랙티브 기획안</p>
 </header>
 
-<div class="section">
+<div class="container">
+  <p class="intro">
+    메인 화면에서 각 존의 대표 놀이기구 디자인을 확인하고,<br>
+    <strong>자세히 보기</strong>를 누르면 상세 기획 요소를 볼 수 있습니다.
+  </p>
 
-<div class="zone">
-<h2>🐂 Cyclops Zone</h2>
+  <div class="grid">
+    <div class="card">
+      <img
+        src="https://raw.githubusercontent.com/suinn1230/odyssey-theme-park/main/cyclops-ride.png"
+        alt="키클롭스 놀이기구 이미지"
+        onerror="this.src='https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1200&q=80';"
+      />
+      <div class="card-body">
+        <div class="zone">🐑 Cyclops Zone</div>
+        <div class="subtitle">키클롭스 탈출</div>
+        <p class="summary">양 아래에 숨어 거인의 동굴에서 탈출하는 긴장감 중심 롤러코스터형 어트랙션</p>
+        <button onclick="openPopup('cyclops')">자세히 보기</button>
+      </div>
+    </div>
 
-<div class="card">
-<h3>키클롭스 탈출</h3>
-<p>양 아래에 숨어 거인의 동굴에서 탈출하는 체험</p>
-<button onclick="openPopup('cyclops')">자세히 보기</button>
-</div>
-
-</div>
-
-
-<div class="zone">
-<h2>🌊 Poseidon Zone</h2>
-
-<div class="card">
-<h3>포세이돈의 분노</h3>
-<p>폭풍 속에서 살아남는 협동형 항해 체험</p>
-<button onclick="openPopup('poseidon')">자세히 보기</button>
-</div>
-
-</div>
-
+    <div class="card">
+      <img
+        src="https://raw.githubusercontent.com/suinn1230/odyssey-theme-park/main/poseidon-ride.png"
+        alt="포세이돈 놀이기구 이미지"
+        onerror="this.src='https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=80';"
+      />
+      <div class="card-body">
+        <div class="zone">🌊 Poseidon Zone</div>
+        <div class="subtitle">포세이돈의 분노</div>
+        <p class="summary">폭풍 속에서 배가 분리되고 다시 합류하는 협동형 보트 라이드 어트랙션</p>
+        <button onclick="openPopup('poseidon')">자세히 보기</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div id="popup">
-<div id="popupContent">
-<h2 id="title"></h2>
-<p id="desc"></p>
-<button onclick="closePopup()">닫기</button>
-</div>
+  <div id="popupContent">
+    <div class="popup-hero">
+      <img id="popupImage" src="" alt="상세 이미지" />
+    </div>
+    <div class="popup-body">
+      <div class="popup-zone" id="popupZone"></div>
+      <h2 class="popup-title" id="popupTitle"></h2>
+      <div id="popupDesc"></div>
+
+      <div class="info-grid">
+        <div class="info-box">
+          <h3>미션 설계</h3>
+          <div id="popupMission"></div>
+        </div>
+
+        <div class="info-box">
+          <h3>공간 디자인</h3>
+          <div id="popupSpace"></div>
+        </div>
+
+        <div class="info-box">
+          <h3>캐스트 설정</h3>
+          <div id="popupCast"></div>
+        </div>
+
+        <div class="info-box">
+          <h3>탑승 정보</h3>
+          <div id="popupRideInfo"></div>
+        </div>
+      </div>
+
+      <div class="close-wrap">
+        <button class="close-btn" onclick="closePopup()">닫기</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
+  const rideData = {
+    cyclops: {
+      zone: "🐑 Cyclops Zone",
+      title: "키클롭스 탈출",
+      image: "https://raw.githubusercontent.com/suinn1230/odyssey-theme-park/main/cyclops-ride.png",
+      fallback: "https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1200&q=80",
+      desc: `
+        <p>
+          키클롭스 존은 <strong>폴리페모스의 동굴</strong>을 배경으로 구성된 서사형 어트랙션입니다.
+          방문객은 오디세우스의 동료가 되어, 양의 배 아래에 숨어 동굴 밖으로 탈출하는 신화적 장면을 직접 체험하게 됩니다.
+        </p>
+        <p>
+          놀이기구는 <strong>양 외형의 탑승 차량</strong>과 <strong>동굴 내부 다크라이드 + 급가속 탈출 구간</strong>이 결합된 구조로 설계됩니다.
+          이동 중 거대한 키클롭스가 양의 등을 손으로 확인하는 장면이 연출되며, 이때 탑승 차량 상부 구조가 반응해
+          “들킬 수도 있다”는 긴장감을 극대화합니다.
+        </p>
+      `,
+      mission: `
+        <ul>
+          <li>방문객은 “조용히 탈출해야 하는 동료” 역할을 부여받습니다.</li>
+          <li>동굴 내부에서는 소리와 조명 변화에 맞춰 몸을 낮추는 연출이 들어갑니다.</li>
+          <li>키클롭스의 손이 닿는 순간, 일부 좌석 구간이 흔들리며 긴장감을 줍니다.</li>
+          <li>마지막에는 동굴 출구를 향해 급가속하며 탈출의 해방감을 전달합니다.</li>
+        </ul>
+      `,
+      space: `
+        <ul>
+          <li>거대한 암석 동굴과 좁은 출구 구조로 폐쇄감 강조</li>
+          <li>횃불 조명, 안개, 양 떼 조형물, 목재 울타리 배치</li>
+          <li>키클롭스 애니메트로닉은 실제보다 과장된 크기로 연출</li>
+          <li>트랙은 바닥 가까이 배치해 “양 밑에 숨어 이동한다”는 느낌 강화</li>
+        </ul>
+      `,
+      cast: `
+        <ul>
+          <li><strong>역할:</strong> 오디세우스의 동료, 탈출을 돕는 생존자</li>
+          <li><strong>의상:</strong> 찢어진 고대 그리스 전사 복장, 흙과 피 표현</li>
+          <li><strong>대사 예시:</strong> “조용히 움직이세요!”, “고개 숙이세요!”, “곧 출구입니다!”</li>
+        </ul>
+      `,
+      rideInfo: `
+        <ul>
+          <li><strong>놀이기구 타입:</strong> 다크라이드 결합형 롤러코스터</li>
+          <li><strong>예상 탑승 시간:</strong> 약 3~4분</li>
+          <li><strong>핵심 감정:</strong> 공포, 긴장, 탈출의 쾌감</li>
+        </ul>
+      `
+    },
 
-function openPopup(type){
+    poseidon: {
+      zone: "🌊 Poseidon Zone",
+      title: "포세이돈의 분노",
+      image: "https://raw.githubusercontent.com/suinn1230/odyssey-theme-park/main/poseidon-ride.png",
+      fallback: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=80",
+      desc: `
+        <p>
+          포세이돈의 분노 존은 <strong>폴리페모스 사건 이후 시작된 포세이돈의 분노</strong>를 중심으로 구성됩니다.
+          방문객은 폭풍에 휘말린 선원이 되어 거대한 파도, 번개, 바다 동굴 속 위협을 체험하게 됩니다.
+        </p>
+        <p>
+          이 어트랙션은 <strong>10인 탑승 보트</strong>가 중간 지점에서 <strong>5명씩 두 갈래로 분리</strong>되는 구조입니다.
+          각 팀은 서로 다른 동굴로 진입해 생존 미션을 수행하고, 이후 다시 합류해 폭풍을 돌파하는 클라이맥스를 맞이합니다.
+        </p>
+      `,
+      mission: `
+        <ul>
+          <li><strong>A팀:</strong> 방향 조정, 조타 장치 작동, 빛을 따라 항로 선택</li>
+          <li><strong>B팀:</strong> 물 퍼내기, 균형 유지, 장애물 회피</li>
+          <li>각 팀은 동굴 내부에서 짧은 협동 미션을 수행합니다.</li>
+          <li>미션 결과에 따라 흔들림, 조명, 물 효과가 다르게 반응하는 연출을 넣을 수 있습니다.</li>
+        </ul>
+      `,
+      space: `
+        <ul>
+          <li>폭풍 치는 바다와 해식동굴을 결합한 공간 연출</li>
+          <li>번개, 천둥, 안개, 물 튀김, 거대한 파도 조형물 활용</li>
+          <li>동굴 한쪽은 붉은 조명, 다른 쪽은 푸른 조명으로 차별화</li>
+          <li>포세이돈 조형물과 삼지창, 파도 벽면 그래픽으로 신의 개입 강조</li>
+        </ul>
+      `,
+      cast: `
+        <ul>
+          <li><strong>역할:</strong> 선원, 항해사, 폭풍 속 생존을 돕는 안내자</li>
+          <li><strong>의상:</strong> 젖은 느낌의 항해복, 밧줄과 가죽 장비</li>
+          <li><strong>대사 예시:</strong> “노를 맞춰 저으세요!”, “폭풍이 더 거세집니다!”, “균형을 유지하세요!”</li>
+        </ul>
+      `,
+      rideInfo: `
+        <ul>
+          <li><strong>놀이기구 타입:</strong> 인터랙티브 보트 라이드</li>
+          <li><strong>예상 탑승 인원:</strong> 10명 (중간에 5명씩 분리)</li>
+          <li><strong>예상 탑승 시간:</strong> 약 4~5분</li>
+          <li><strong>핵심 감정:</strong> 혼란, 협동, 생존, 폭풍 탈출의 스릴</li>
+        </ul>
+      `
+    }
+  };
 
-let title="";
-let desc="";
+  function openPopup(type){
+    const data = rideData[type];
+    if(!data) return;
 
-if(type==="cyclops"){
-title="키클롭스 어트랙션";
-desc=`
-폴리페모스의 동굴에서 탈출하는 롤러코스터형 어트랙션입니다.
-방문객은 양의 아래에 매달려 이동하며, 
-키클롭스가 양을 만지는 순간 구조가 반응하여 긴장감을 제공합니다.
-마지막에는 동굴을 탈출하며 속도가 급격히 상승합니다.
-`;
-}
+    document.getElementById("popupZone").innerHTML = data.zone;
+    document.getElementById("popupTitle").innerHTML = data.title;
+    document.getElementById("popupDesc").innerHTML = data.desc;
+    document.getElementById("popupMission").innerHTML = data.mission;
+    document.getElementById("popupSpace").innerHTML = data.space;
+    document.getElementById("popupCast").innerHTML = data.cast;
+    document.getElementById("popupRideInfo").innerHTML = data.rideInfo;
 
-if(type==="poseidon"){
-title="포세이돈의 분노";
-desc=`
-포세이돈의 분노로 발생한 폭풍 속을 항해하는 보트형 어트랙션입니다.
-10명의 탑승객이 5명씩 나뉘어 각각 다른 동굴로 이동하며,
-협동 미션을 수행한 후 다시 합류하여 폭풍을 탈출합니다.
-`;
-}
+    const img = document.getElementById("popupImage");
+    img.src = data.image;
+    img.onerror = function(){
+      this.onerror = null;
+      this.src = data.fallback;
+    };
 
-document.getElementById("title").innerText=title;
-document.getElementById("desc").innerText=desc;
-document.getElementById("popup").style.display="flex";
-}
+    document.getElementById("popup").style.display = "flex";
+    document.body.style.overflow = "hidden";
+  }
 
-function closePopup(){
-document.getElementById("popup").style.display="none";
-}
+  function closePopup(){
+    document.getElementById("popup").style.display = "none";
+    document.body.style.overflow = "auto";
+  }
 
+  document.getElementById("popup").addEventListener("click", function(e){
+    if(e.target.id === "popup"){
+      closePopup();
+    }
+  });
 </script>
 
 </body>
