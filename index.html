@@ -397,13 +397,18 @@
     document.getElementById("popupRideInfo").innerHTML = data.rideInfo;
 
     const img = document.getElementById("popupImage");
-    img.src = data.image;
-   const img2 = document.getElementById("popupImage2");
-img2.src = data.image2;
-    img.onerror = function(){
-      this.onerror = null;
-      this.src = data.fallback;
-    };
+img.src = data.image;
+img.onerror = function () {
+  this.onerror = null;
+  this.src = data.fallback;
+};
+
+const img2 = document.getElementById("popupImage2");
+img2.style.display = "block";
+img2.src = data.image2 || data.image;
+img2.onerror = function () {
+  this.style.display = "none";
+};
 
     document.getElementById("popup").style.display = "flex";
     document.body.style.overflow = "hidden";
