@@ -245,8 +245,9 @@
 <div id="popup">
   <div id="popupContent">
     <div class="popup-hero">
-      <img id="popupImage" src="" alt="상세 이미지" />
-    </div>
+  <img id="popupImage" src="" alt="상세 이미지" />
+  <img id="popupImage2" src="" alt="상세 이미지2" />
+</div>
     <div class="popup-body">
       <div class="popup-zone" id="popupZone"></div>
       <h2 class="popup-title" id="popupTitle"></h2>
@@ -287,6 +288,7 @@
       zone: "🐑 Cyclops Zone",
       title: "키클롭스 탈출",
       image: "https://raw.githubusercontent.com/suinn1230/odyssey-theme-park/main/cyclops-ride.png",
+     image2: "https://raw.githubusercontent.com/suinn1230/odyssey-theme-park/main/cyclops-ride2.png",
       fallback: "https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1200&q=80",
       desc: `
         <p>
@@ -332,9 +334,11 @@
     },
 
     poseidon: {
-      zone: "🌊 Poseidon Zone",
-      title: "포세이돈의 분노",
-      image: "https://raw.githubusercontent.com/suinn1230/odyssey-theme-park/main/poseidon-ride.png",
+  zone: "🌊 Poseidon Zone",
+  title: "포세이돈의 분노",
+
+  image: "https://raw.githubusercontent.com/suinn1230/odyssey-theme-park/main/poseidon-ride.png",
+  image2: "https://raw.githubusercontent.com/suinn1230/odyssey-theme-park/main/poseidon-ride2.png",
       fallback: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=80",
       desc: `
         <p>
@@ -394,6 +398,8 @@
 
     const img = document.getElementById("popupImage");
     img.src = data.image;
+   const img2 = document.getElementById("popupImage2");
+img2.src = data.image2;
     img.onerror = function(){
       this.onerror = null;
       this.src = data.fallback;
